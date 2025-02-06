@@ -18,7 +18,7 @@ const TimeBlockBar: React.FC<TimeBlockBarProps> = ({ timeBlocks }) => {
     };
 
     return (
-        <div className="relative" style={{ height: `${barHeight}px`, width: '50px', backgroundColor: '#f3f4f6' }}>
+        <div className="relative p-4 m-4" style={{ height: `${barHeight}px`, width: '150px', backgroundColor: '#f3f4f6' }}>
             {timeBlocks.map((block) => {
                 // Obtener el usuario asociado al bloque de tiempo
                 const user = users.find((u) => u.id === block.userId);
@@ -41,7 +41,6 @@ const TimeBlockBar: React.FC<TimeBlockBarProps> = ({ timeBlocks }) => {
                             backgroundColor: blockColor,
                         }}
                     >
-
                     </div>
                 );
             })}
@@ -53,7 +52,7 @@ const TimeBlockBar: React.FC<TimeBlockBarProps> = ({ timeBlocks }) => {
                     className="absolute w-full border-t border-gray-400"
                     style={{ top: `${(hour / 24) * barHeight}px` }}
                 >
-                    <span className="text-xs text-gray-600">{hour}:00</span>
+                    <span className="text-xs text-gray-300">{hour}:00</span>
                 </div>
             ))}
         </div>

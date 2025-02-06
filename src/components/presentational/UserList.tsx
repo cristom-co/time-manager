@@ -41,7 +41,7 @@ const UserList: React.FC<UserListProps> = ({ users, onFilterChange }) => {
     });
 
     return (
-        <div>
+        <div className='p-4'>
             <div className="mb-4">
                 <div className="flex flex-wrap gap-2 mb-2">
                     {['name', 'phone', 'email'].map((field) => (
@@ -49,8 +49,8 @@ const UserList: React.FC<UserListProps> = ({ users, onFilterChange }) => {
                             key={field}
                             onClick={() => toggleFilterBy(field)}
                             className={`px-3 py-1 rounded-full text-sm ${filterBy.includes(field)
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-gray-200 text-gray-700'
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-gray-200 text-gray-700'
                                 }`}
                         >
                             {field === 'name' && 'Nombre'}

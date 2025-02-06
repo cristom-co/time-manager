@@ -25,7 +25,7 @@ const TimeBlockForm: React.FC<TimeBlockFormProps> = ({ users, onSave }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 flex flex-col gap-4">
             <select
                 value={userId}
                 onChange={(e) => setUserId(e.target.value)}

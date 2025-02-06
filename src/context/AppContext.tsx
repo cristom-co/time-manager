@@ -17,7 +17,15 @@ const generateRandomColor = (): string => {
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<User[]>([{
+        address: "test",
+        color: "#4d609e",
+        email: "test@gmail.com",
+        id: "1738871039116",
+        name: "test",
+        phone: "test"
+    }]);
+
     const [timeBlocks, setTimeBlocks] = useState<TimeBlock[]>([]);
 
     const addUser = (newUser: Omit<User, 'id' | 'color'>) => {

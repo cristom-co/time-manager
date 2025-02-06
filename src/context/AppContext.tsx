@@ -24,9 +24,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         id: "1738871039116",
         name: "test",
         phone: "test"
-    }]);
-
-    const [timeBlocks, setTimeBlocks] = useState<TimeBlock[]>([]);
+    }]); const [timeBlocks, setTimeBlocks] = useState<TimeBlock[]>([]);
 
     const addUser = (newUser: Omit<User, 'id' | 'color'>) => {
         const userWithId: User = {
@@ -34,10 +32,29 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             id: String(Date.now()),
             color: generateRandomColor(), // Asignar un color aleatorio
         };
-        setUsers([...users, userWithId]); // Actualizar el estado de los usuarios
+        setUsers([...users, userWithId]);
+    };
+
+    const isTimeBlockOverlapping = (newTimeBlock: { startHour: number; startMinute: number; endHour: number; endMinute: number }) => {
+        const newStart = newTimeBlock.startHour * 60 + newTimeBlock.startMinute; // Convertir a minutos
+        const newEnd = newTimeBlock.endHour * 60 + newTimeBlock.endMinute; // Convertir a minutos
+
+        return timeBlocks.some((block) => {
+            const blockStart = block.startHour * 60 + block.startMinute; // Convertir a minutos
+            const blockEnd = block.endHour * 60 + block.endMinute; // Convertir a minutos
+
+            // Verificar si hay solapamiento
+            return newStart < blockEnd && newEnd > blockStart;
+        });
     };
 
     const addTimeBlock = (newTimeBlock: { userId: string; startHour: number; startMinute: number; endHour: number; endMinute: number }) => {
+        // Validar que el bloque de tiempo no se solape con otros
+        if (isTimeBlockOverlapping(newTimeBlock)) {
+            alert('El bloque de tiempo se solapa con otro existente.');
+            return;
+        }
+
         const timeBlockWithId: TimeBlock = {
             ...newTimeBlock,
             id: String(Date.now()),
